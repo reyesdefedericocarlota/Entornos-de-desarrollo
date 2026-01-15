@@ -1,0 +1,18 @@
+<script>
+    //Este código recorre un array de números y realiza un cálculo acumulativo bajo una condición determinada.
+
+    function calculoArray(arrayNumeros, numero) {
+        let resultado = 0;
+        for (let i = 0; i < arrayNumeros.length; i++) {
+            if (arrayNumeros[i] > numero) {
+                resultado = resultado + arrayNumeros[i];
+            }
+        }
+        return resultado;
+    }
+
+    let primerArray = [5, 3, 6, 4, 3, 7]
+    let numero1 = 4
+
+    console.log(calculoArray(primerArray, numero1))
+</script>

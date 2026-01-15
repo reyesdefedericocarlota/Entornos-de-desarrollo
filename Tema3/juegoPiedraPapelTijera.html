@@ -1,0 +1,65 @@
+<script>
+// Marcador 
+let userScore = 0;
+let computerScore = 0;
+
+// Elecciones posibles 
+const OPCIONES = ['piedra', 'papel', 'tijera'];
+
+// Función para la elección aleatoria de la máquina
+function obtenerEleccionMaquina() {
+    return OPCIONES[Math.floor(Math.random() * opciones.length)];
+}
+
+// Función para mostrar elecciones en pantalla
+function mostrarElecciones(usuario, maquina) {
+    document.getElementById('user-choice').textContent = `Tu elección: ${usuario}`;
+    document.getElementById('computer-choice').textContent = `Elección de la máquina: ${maquina}`;
+}
+
+// Función para actualizar el marcador 
+function actualizarMarcador(ganador) {
+    if (ganador === 'usuario') userScore++;
+    if (ganador === 'maquina') computerScore++;
+
+    document.getElementById('user-wins').textContent = `Victorias del jugador: ${userScore}`;
+    document.getElementById('computer-wins').textContent = `Victorias de la computadora: ${computerScore}`;
+}
+
+// Función para determinar el ganador
+function determinarGanador(usuario, maquina) {
+    if (usuario === maquina) return 'empate';
+
+    if (
+        (usuario === 'piedra' && maquina === 'tijera') ||
+        (usuario === 'papel' && maquina === 'piedra') ||
+        (usuario === 'tijera' && maquina === 'papel')
+    ) {
+        return 'usuario';
+    }
+
+    return 'maquina';
+}
+
+// Función para mostrar texto del resultado
+function mostrarResultado(ganador) {
+    let mensaje = "";
+
+    if (ganador === 'empate') mensaje = 'Es un empate 🤝';
+    else if (ganador === 'usuario') mensaje = '¡Ganas tú! 🎉';
+    else mensaje = 'Gana la máquina 😢';
+
+    document.getElementById('winner').textContent = `Resultado: ${mensaje}`;
+}
+
+// Función principal del juego
+function jugar(eleccionUsuario) {
+    let eleccionMaquina = obtenerEleccionMaquina();
+    mostrarElecciones(eleccionUsuario, eleccionMaquina);
+
+    let resultado = determinarGanador(eleccionUsuario, eleccionMaquina);
+    actualizarMarcador(resultado);
+    mostrarResultado(resultado);
+}
+
+</script>
